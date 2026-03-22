@@ -215,8 +215,16 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 1.5rem; margin-bottom: 1.25rem;
     }
+    .topic-card { cursor: pointer; text-decoration: none; display: block; }
     .topic-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
     .topic-card p { font-size: 0.9rem; color: var(--gray-400); line-height: 1.6; }
+    .topic-posts { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-200); }
+    .topic-posts a {
+      display: block; color: var(--navy); text-decoration: none; font-size: 0.85rem;
+      font-weight: 500; padding: 4px 0; transition: color 0.2s;
+    }
+    .topic-posts a:hover { color: var(--gold); }
+    .topic-posts a::before { content: '\2192\00a0'; color: var(--gold); }
 
     /* --- FEATURED POSTS --- */
     #posts { background: var(--navy); }
@@ -229,6 +237,7 @@
     .post-card {
       background: var(--navy-light); border-radius: 16px; overflow: hidden;
       transition: all 0.3s; border: 1px solid rgba(255,255,255,0.06);
+      text-decoration: none; display: block; cursor: pointer;
     }
     .post-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); border-color: rgba(201,168,76,0.3); }
     .post-card img { width: 100%; height: 220px; object-fit: cover; }
@@ -326,8 +335,7 @@
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#topics">Topics</a></li>
-        <li><a href="#posts">Insights</a></li>
-        <li><a href="https://www.instagram.com/firststep.apac" target="_blank" class="nav-cta">Follow Us</a></li>
+        <li><a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank" class="nav-cta">Follow Us</a></li>
       </ul>
       <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -347,7 +355,7 @@
         <h1>Your <span class="accent">First Step</span> to Financial Freedom</h1>
         <p>We break down complex financial concepts into clear, actionable insights for the next generation of investors across Asia Pacific.</p>
         <div class="hero-buttons">
-          <a href="https://www.instagram.com/firststep.apac" target="_blank" class="btn-primary">
+          <a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank" class="btn-primary">
             <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
             Follow @Firststep.apac
           </a>
@@ -367,9 +375,9 @@
   <!-- STATS -->
   <div class="stats-bar">
     <div class="stats-inner">
-      <div class="stat-item fade-up"><h3>10<span class="gold">+</span></h3><p>In-Depth Posts</p></div>
+      <div class="stat-item fade-up"><h3>8<span class="gold">+</span></h3><p>Years in Finance</p></div>
+      <div class="stat-item fade-up"><h3>50<span class="gold">+</span></h3><p>Students Mentored</p></div>
       <div class="stat-item fade-up"><h3>2</h3><p>Languages</p></div>
-      <div class="stat-item fade-up"><h3>10<span class="gold">+</span></h3><p>Topics Covered</p></div>
       <div class="stat-item fade-up"><h3>APAC</h3><p>Focus Region</p></div>
     </div>
   </div>
@@ -387,16 +395,16 @@
       <div class="about-text fade-up">
         <span class="section-label">About Us</span>
         <h2 class="section-title">Bridging the Gap Between Wall Street and Main Street</h2>
-        <p>First Step was founded with a simple mission: make professional-grade financial knowledge accessible to everyone in Asia Pacific. We believe that understanding markets shouldn't require an MBA or a Bloomberg Terminal.</p>
-        <p>From geopolitical impacts on oil prices to the mechanics of compound interest, we translate institutional-level analysis into content that empowers you to make smarter investment decisions.</p>
+        <p>First Step is founded by a finance professional with 8 years of experience across buy-side, sell-side, and equity research in the Asia Pacific region. Having worked at the heart of APAC's financial markets, we understand what it takes to succeed in this industry.</p>
+        <p>Over the past 3 years, we have helped over 50 students prepare for and land roles in sell-side, buy-side, and management trainee interviews. Our mission is to make professional-grade financial knowledge accessible to everyone -- whether you're looking to break into finance or simply make smarter investment decisions.</p>
         <div class="about-values">
           <div class="about-value">
             <div class="about-value-icon">
-              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             </div>
             <div>
-              <h4>Bilingual Content</h4>
-              <p>English & Traditional Chinese</p>
+              <h4>50+ Students Mentored</h4>
+              <p>Sell-side, buy-side & MT interviews</p>
             </div>
           </div>
           <div class="about-value">
@@ -404,8 +412,8 @@
               <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             </div>
             <div>
-              <h4>Institutional Insight</h4>
-              <p>Professional-grade analysis simplified</p>
+              <h4>8 Years in Finance</h4>
+              <p>Buy-side, sell-side & equity research across APAC</p>
             </div>
           </div>
         </div>
@@ -426,42 +434,66 @@
           <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
         <h3>Market Analysis</h3>
-        <p>Geopolitical events, macro trends, and their real-time impact on your portfolio. We decode the signals that matter.</p>
+        <p>Geopolitical events, macro trends, and their real-time impact on your portfolio.</p>
+        <div class="topic-posts">
+          <a href="post1.html">Iran Conflict & The Oil Market</a>
+          <a href="post6.html">Interest Rates: The One Number That Moves Every Market</a>
+        </div>
       </div>
       <div class="topic-card fade-up">
         <div class="topic-icon">
           <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
         </div>
         <h3>Investing Fundamentals</h3>
-        <p>ETFs, diversification, compound interest, and portfolio construction. The building blocks every investor needs.</p>
+        <p>ETFs, diversification, compound interest, and portfolio construction.</p>
+        <div class="topic-posts">
+          <a href="post4.html">ETF Investing 101</a>
+          <a href="post8.html">Diversification: The Only Free Lunch</a>
+          <a href="post10.html">Compound Interest: The 8th Wonder</a>
+        </div>
       </div>
       <div class="topic-card fade-up">
         <div class="topic-icon">
           <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         </div>
         <h3>Financial Statements</h3>
-        <p>Learn to read income statements, balance sheets, and cash flows. Spot red flags before the market does.</p>
+        <p>Learn to read income statements, balance sheets, and cash flows.</p>
+        <div class="topic-posts">
+          <a href="post5.html">Financial Statements 101</a>
+        </div>
       </div>
       <div class="topic-card fade-up">
         <div class="topic-icon">
           <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
         <h3>Interest Rates & Macro</h3>
-        <p>Central bank decisions, inflation dynamics, and how the "one number" moves stocks, bonds, and property.</p>
+        <p>Central bank decisions, inflation dynamics, and how the "one number" moves everything.</p>
+        <div class="topic-posts">
+          <a href="post6.html">Interest Rates: The One Number</a>
+          <a href="post1.html">Iran Conflict & The Oil Market</a>
+        </div>
       </div>
       <div class="topic-card fade-up">
         <div class="topic-icon">
           <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <h3>Career in Finance</h3>
-        <p>Breaking into investment banking, surviving the AI era, and building the hybrid skills that get you hired.</p>
+        <p>Breaking into investment banking, surviving the AI era, and getting hired.</p>
+        <div class="topic-posts">
+          <a href="post7.html">Breaking Into Investment Banking</a>
+          <a href="post3.html">Finding a Job in the AI Era</a>
+        </div>
       </div>
       <div class="topic-card fade-up">
         <div class="topic-icon">
           <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h3>Risk Management</h3>
-        <p>Private credit risks, bull vs bear strategies, and portfolio protection. Know when to be greedy and when to be fearful.</p>
+        <h3>Risk & Strategy</h3>
+        <p>Private credit risks, bull vs bear strategies, and portfolio protection.</p>
+        <div class="topic-posts">
+          <a href="post2.html">Private Credit: The $1.7T Time Bomb?</a>
+          <a href="post9.html">Bull vs Bear: Profit in Any Market</a>
+        </div>
       </div>
     </div>
   </section>
@@ -469,35 +501,91 @@
   <!-- FEATURED POSTS -->
   <section id="posts">
     <div class="section-header">
-      <span class="section-label">Latest Insights</span>
-      <h2 class="section-title">Featured Posts</h2>
+      <span class="section-label">All Posts</span>
+      <h2 class="section-title">Our Content Library</h2>
       <p class="section-subtitle">Deep-dive analyses and actionable guides published in English and Traditional Chinese.</p>
     </div>
     <div class="posts-grid">
-      <div class="post-card fade-up">
+      <a href="post1.html" class="post-card fade-up">
         <img src="Post 1/Post1_EN_slide-1.jpg" alt="Iran Conflict & The Oil Market">
         <div class="post-card-body">
           <span class="post-tag">Geopolitics</span>
           <h3>Iran Conflict & The Oil Market</h3>
-          <p>What the US-Iran tension means for oil prices, inflation expectations, and your investment portfolio.</p>
+          <p>What the US-Iran tension means for oil prices, inflation expectations, and your portfolio.</p>
         </div>
-      </div>
-      <div class="post-card fade-up">
+      </a>
+      <a href="post2.html" class="post-card fade-up">
         <img src="Post 2/Post2_EN_slide-1.jpg" alt="Private Credit">
         <div class="post-card-body">
           <span class="post-tag">Risk</span>
           <h3>Private Credit: The $1.7T Time Bomb?</h3>
           <p>Shadow lending, hidden risks, and why this market could ripple into your stock portfolio.</p>
         </div>
-      </div>
-      <div class="post-card fade-up">
+      </a>
+      <a href="post3.html" class="post-card fade-up">
+        <img src="Post 3/Post3_EN_slide-1.jpg" alt="Finding a Job in the AI Era">
+        <div class="post-card-body">
+          <span class="post-tag">Career</span>
+          <h3>Finding a Job in the AI Era</h3>
+          <p>30% of entry-level finance tasks will be automated by 2027. The roles that survive pay more.</p>
+        </div>
+      </a>
+      <a href="post4.html" class="post-card fade-up">
         <img src="Post 4/Post4_EN_slide-1.jpg" alt="ETF Investing 101">
         <div class="post-card-body">
           <span class="post-tag">Basics</span>
           <h3>ETF Investing 101</h3>
           <p>Your easiest first step to building wealth. How $100/month can become $150K in 20 years.</p>
         </div>
-      </div>
+      </a>
+      <a href="post5.html" class="post-card fade-up">
+        <img src="Post 5/Post5_EN_slide-1.jpg" alt="Financial Statements 101">
+        <div class="post-card-body">
+          <span class="post-tag">Fundamentals</span>
+          <h3>Financial Statements 101</h3>
+          <p>Income statements, balance sheets, and cash flows. 5 minutes of reading = ahead of 90% of investors.</p>
+        </div>
+      </a>
+      <a href="post6.html" class="post-card fade-up">
+        <img src="Post 6/Post6_EN_slide-1.jpg" alt="Interest Rates">
+        <div class="post-card-body">
+          <span class="post-tag">Macro</span>
+          <h3>Interest Rates: The One Number</h3>
+          <p>Set by central banks, this one lever controls stocks, bonds, property & savings.</p>
+        </div>
+      </a>
+      <a href="post7.html" class="post-card fade-up">
+        <img src="Post 7/Post7_EN_slide-1.jpg" alt="Breaking Into Investment Banking">
+        <div class="post-card-body">
+          <span class="post-tag">Career</span>
+          <h3>Breaking Into Investment Banking</h3>
+          <p>80-100 hr/week, $150K+ at 22. What they don't teach you in school.</p>
+        </div>
+      </a>
+      <a href="post8.html" class="post-card fade-up">
+        <img src="Post 8/Post8_EN_slide-1.jpg" alt="Diversification">
+        <div class="post-card-body">
+          <span class="post-tag">Strategy</span>
+          <h3>Diversification: The Only Free Lunch</h3>
+          <p>In 2022, stocks fell -20% but a diversified portfolio only -8%. Build your first portfolio.</p>
+        </div>
+      </a>
+      <a href="post9.html" class="post-card fade-up">
+        <img src="Post 9/Post9_EN_slide-1.jpg" alt="Bull vs Bear">
+        <div class="post-card-body">
+          <span class="post-tag">Strategy</span>
+          <h3>Bull vs Bear: Profit in Any Market</h3>
+          <p>Bull markets average +154%, bear markets -33%. Learn strategies for both.</p>
+        </div>
+      </a>
+      <a href="post10.html" class="post-card fade-up">
+        <img src="Post 10/Post10_EN_slide-1.jpg" alt="Compound Interest">
+        <div class="post-card-body">
+          <span class="post-tag">Basics</span>
+          <h3>Compound Interest: The 8th Wonder</h3>
+          <p>$10,000 at 8% per year becomes $100K+ in 30 years. Time is your greatest asset.</p>
+        </div>
+      </a>
     </div>
   </section>
 
@@ -508,7 +596,7 @@
       <h2>Ready to Take Your First Step?</h2>
       <p>Follow us on Instagram for weekly insights on markets, investing, and building your financial future in Asia Pacific.</p>
       <div class="cta-buttons">
-        <a href="https://www.instagram.com/firststep.apac" target="_blank" class="btn-primary">
+        <a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank" class="btn-primary">
           <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
           @Firststep.apac
         </a>
@@ -526,10 +614,9 @@
       <div class="footer-links">
         <a href="#about">About</a>
         <a href="#topics">Topics</a>
-        <a href="#posts">Insights</a>
       </div>
       <div class="footer-social">
-        <a href="https://www.instagram.com/firststep.apac" target="_blank" aria-label="Instagram">
+        <a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank" aria-label="Instagram">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
         </a>
       </div>
