@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Step | Your First Step to Financial Freedom</title>
+  <link rel="icon" type="image/png" href="First Step Logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #1a2744;
+      --navy-light: #243352;
+      --navy-dark: #111c32;
+      --gold: #c9a84c;
+      --gold-light: #e0c36a;
+      --white: #ffffff;
+      --gray-100: #f4f6f9;
+      --gray-200: #e2e6ed;
+      --gray-400: #9ca3af;
+      --green: #2ecc71;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--navy);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(26, 39, 68, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 0 2rem;
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo img { height: 42px; width: 42px; border-radius: 50%; }
+    .nav-logo span { color: var(--white); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--gray-200); text-decoration: none; font-size: 0.9rem;
+      font-weight: 500; transition: color 0.2s; position: relative;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--navy) !important; padding: 10px 24px;
+      border-radius: 8px; font-weight: 600 !important; transition: all 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; }
+    .mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: 0.3s; }
+
+    /* --- HERO --- */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      padding: 120px 2rem 80px;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 30%, rgba(46,204,113,0.05) 0%, transparent 50%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.03;
+      background-image: linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; max-width: 1200px; width: 100%; display: flex; align-items: center; gap: 4rem; }
+    .hero-text { flex: 1.2; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+      padding: 6px 16px; border-radius: 50px; margin-bottom: 1.5rem;
+      color: var(--gold); font-size: 0.85rem; font-weight: 600;
+    }
+    .hero-badge .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: var(--white);
+      line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1.5px;
+    }
+    .hero h1 .accent { color: var(--gold); }
+    .hero p {
+      font-size: 1.15rem; color: var(--gray-400); line-height: 1.7;
+      max-width: 520px; margin-bottom: 2.5rem;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: var(--navy); padding: 16px 32px;
+      border-radius: 12px; font-weight: 700; font-size: 1rem; text-decoration: none;
+      transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.08); color: var(--white); padding: 16px 32px;
+      border-radius: 12px; font-weight: 600; font-size: 1rem; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.15); transition: all 0.3s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+
+    .hero-visual { flex: 1; display: flex; justify-content: center; }
+    .hero-card-stack { position: relative; width: 340px; height: 420px; }
+    .hero-card {
+      position: absolute; width: 280px; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4); transition: transform 0.5s;
+    }
+    .hero-card img { width: 100%; display: block; }
+    .hero-card:nth-child(1) { top: 0; left: 0; z-index: 3; transform: rotate(-3deg); }
+    .hero-card:nth-child(2) { top: 30px; left: 40px; z-index: 2; transform: rotate(2deg); }
+    .hero-card:nth-child(3) { top: 60px; left: 80px; z-index: 1; transform: rotate(6deg); }
+    .hero-card-stack:hover .hero-card:nth-child(1) { transform: rotate(-6deg) translateX(-20px); }
+    .hero-card-stack:hover .hero-card:nth-child(2) { transform: rotate(0deg) translateY(-10px); }
+    .hero-card-stack:hover .hero-card:nth-child(3) { transform: rotate(8deg) translateX(20px); }
+
+    /* --- STATS BAR --- */
+    .stats-bar {
+      background: var(--white);
+      border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200);
+      padding: 3rem 2rem;
+    }
+    .stats-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center;
+    }
+    .stat-item h3 { font-size: 2.5rem; font-weight: 800; color: var(--navy); letter-spacing: -1px; }
+    .stat-item h3 .gold { color: var(--gold); }
+    .stat-item p { font-size: 0.85rem; color: var(--gray-400); margin-top: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* --- SECTION COMMON --- */
+    section { padding: 100px 2rem; }
+    .section-label {
+      display: inline-block; font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px; color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--navy);
+      line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -1px;
+    }
+    .section-subtitle {
+      font-size: 1.1rem; color: var(--gray-400); max-width: 600px; line-height: 1.7;
+    }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-header .section-subtitle { margin: 0 auto; }
+
+    /* --- ABOUT --- */
+    #about { background: var(--gray-100); }
+    .about-grid { max-width: 1100px; margin: 0 auto; display: flex; gap: 4rem; align-items: center; }
+    .about-image { flex: 1; position: relative; }
+    .about-image img {
+      width: 100%; border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(26,39,68,0.15);
+    }
+    .about-image-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--navy); color: var(--white);
+      padding: 20px 28px; border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .about-image-badge h4 { font-size: 1.5rem; font-weight: 800; }
+    .about-image-badge p { font-size: 0.8rem; color: var(--gray-400); }
+    .about-text { flex: 1.2; }
+    .about-text p { color: #555; line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.05rem; }
+    .about-values { display: flex; gap: 2rem; margin-top: 2rem; }
+    .about-value { display: flex; align-items: flex-start; gap: 12px; }
+    .about-value-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(201,168,76,0.12); display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .about-value h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
+    .about-value p { font-size: 0.85rem; color: var(--gray-400); margin-top: 2px; }
+
+    /* --- TOPICS --- */
+    #topics { background: var(--white); }
+    .topics-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;
+    }
+    .topic-card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: 16px; padding: 2rem;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .topic-card:hover {
+      border-color: var(--gold); transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(26,39,68,0.1);
+    }
+    .topic-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .topic-card:hover::before { opacity: 1; }
+    .topic-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.25rem;
+    }
+    .topic-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+    .topic-card p { font-size: 0.9rem; color: var(--gray-400); line-height: 1.6; }
+
+    /* --- FEATURED POSTS --- */
+    #posts { background: var(--navy); }
+    #posts .section-title { color: var(--white); }
+    #posts .section-subtitle { color: var(--gray-400); }
+    .posts-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;
+    }
+    .post-card {
+      background: var(--navy-light); border-radius: 16px; overflow: hidden;
+      transition: all 0.3s; border: 1px solid rgba(255,255,255,0.06);
+    }
+    .post-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); border-color: rgba(201,168,76,0.3); }
+    .post-card img { width: 100%; height: 220px; object-fit: cover; }
+    .post-card-body { padding: 1.5rem; }
+    .post-tag {
+      display: inline-block; background: rgba(201,168,76,0.15); color: var(--gold);
+      padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+      margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .post-card h3 { color: var(--white); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.4; }
+    .post-card p { color: var(--gray-400); font-size: 0.88rem; line-height: 1.6; }
+
+    /* --- CTA SECTION --- */
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+      text-align: center; padding: 100px 2rem; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 60%);
+    }
+    .cta-inner { position: relative; max-width: 700px; margin: 0 auto; }
+    .cta-section h2 {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -1px;
+    }
+    .cta-section p { color: var(--gray-400); font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.7; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* --- FOOTER --- */
+    footer {
+      background: var(--navy-dark); padding: 3rem 2rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 12px; }
+    .footer-brand img { height: 36px; width: 36px; border-radius: 50%; }
+    .footer-brand span { color: var(--white); font-weight: 700; font-size: 1.1rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center;
+      color: var(--gray-400); text-decoration: none; font-size: 1.1rem; transition: all 0.2s;
+    }
+    .footer-social a:hover { background: var(--gold); color: var(--navy); }
+    .footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; }
+    .footer-bottom p { color: var(--gray-400); font-size: 0.8rem; }
+
+    /* --- ANIMATIONS --- */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 900px) {
+      .hero-content { flex-direction: column; text-align: center; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-buttons { justify-content: center; }
+      .hero-visual { display: none; }
+      .about-grid { flex-direction: column; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .about-values { flex-direction: column; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+      nav.open .nav-links {
+        display: flex; flex-direction: column; position: absolute;
+        top: 70px; left: 0; right: 0; background: var(--navy);
+        padding: 1.5rem 2rem; gap: 1rem; border-top: 1px solid rgba(255,255,255,0.1);
+      }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+      .stat-item h3 { font-size: 2rem; }
+      section { padding: 60px 1.5rem; }
+    }
+
+    /* SVG icon helper */
+    .icon-svg { width: 24px; height: 24px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="First Step Logo.png" alt="First Step">
+        <span>First Step</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#topics">Topics</a></li>
+        <li><a href="#posts">Insights</a></li>
+        <li><a href="https://www.instagram.com/firststep.apac" target="_blank" class="nav-cta">Follow Us</a></li>
+      </ul>
+      <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Financial Education for APAC
+        </div>
+        <h1>Your <span class="accent">First Step</span> to Financial Freedom</h1>
+        <p>We break down complex financial concepts into clear, actionable insights for the next generation of investors across Asia Pacific.</p>
+        <div class="hero-buttons">
+          <a href="https://www.instagram.com/firststep.apac" target="_blank" class="btn-primary">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            Follow @Firststep.apac
+          </a>
+          <a href="#topics" class="btn-secondary">Explore Topics</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <div class="hero-card"><img src="Post 1/Post1_EN_slide-1.jpg" alt="Iran Conflict & Oil Market"></div>
+          <div class="hero-card"><img src="Post 4/Post4_EN_slide-1.jpg" alt="ETF Investing 101"></div>
+          <div class="hero-card"><img src="Post 7/Post7_EN_slide-1.jpg" alt="Breaking Into IB"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item fade-up"><h3>10<span class="gold">+</span></h3><p>In-Depth Posts</p></div>
+      <div class="stat-item fade-up"><h3>2</h3><p>Languages</p></div>
+      <div class="stat-item fade-up"><h3>10<span class="gold">+</span></h3><p>Topics Covered</p></div>
+      <div class="stat-item fade-up"><h3>APAC</h3><p>Focus Region</p></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-image fade-up">
+        <img src="Picture database/hunters-race-MYbhN8KaaEc-unsplash.jpg" alt="Professional team">
+        <div class="about-image-badge">
+          <h4>EST. 2025</h4>
+          <p>Hong Kong</p>
+        </div>
+      </div>
+      <div class="about-text fade-up">
+        <span class="section-label">About Us</span>
+        <h2 class="section-title">Bridging the Gap Between Wall Street and Main Street</h2>
+        <p>First Step was founded with a simple mission: make professional-grade financial knowledge accessible to everyone in Asia Pacific. We believe that understanding markets shouldn't require an MBA or a Bloomberg Terminal.</p>
+        <p>From geopolitical impacts on oil prices to the mechanics of compound interest, we translate institutional-level analysis into content that empowers you to make smarter investment decisions.</p>
+        <div class="about-values">
+          <div class="about-value">
+            <div class="about-value-icon">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <h4>Bilingual Content</h4>
+              <p>English & Traditional Chinese</p>
+            </div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div>
+              <h4>Institutional Insight</h4>
+              <p>Professional-grade analysis simplified</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS -->
+  <section id="topics">
+    <div class="section-header">
+      <span class="section-label">What We Cover</span>
+      <h2 class="section-title">Financial Education That Matters</h2>
+      <p class="section-subtitle">From market fundamentals to career guidance, we equip the next generation of investors with the knowledge that moves the needle.</p>
+    </div>
+    <div class="topics-grid">
+      <div class="topic-card fade-up">
+        <div class="topic-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Market Analysis</h3>
+        <p>Geopolitical events, macro trends, and their real-time impact on your portfolio. We decode the signals that matter.</p>
+      </div>
+      <div class="topic-card fade-up">
+        <div class="topic-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
+        </div>
+        <h3>Investing Fundamentals</h3>
+        <p>ETFs, diversification, compound interest, and portfolio construction. The building blocks every investor needs.</p>
+      </div>
+      <div class="topic-card fade-up">
+        <div class="topic-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Financial Statements</h3>
+        <p>Learn to read income statements, balance sheets, and cash flows. Spot red flags before the market does.</p>
+      </div>
+      <div class="topic-card fade-up">
+        <div class="topic-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>Interest Rates & Macro</h3>
+        <p>Central bank decisions, inflation dynamics, and how the "one number" moves stocks, bonds, and property.</p>
+      </div>
+      <div class="topic-card fade-up">
+        <div class="topic-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Career in Finance</h3>
+        <p>Breaking into investment banking, surviving the AI era, and building the hybrid skills that get you hired.</p>
+      </div>
+      <div class="topic-card fade-up">
+        <div class="topic-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Risk Management</h3>
+        <p>Private credit risks, bull vs bear strategies, and portfolio protection. Know when to be greedy and when to be fearful.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED POSTS -->
+  <section id="posts">
+    <div class="section-header">
+      <span class="section-label">Latest Insights</span>
+      <h2 class="section-title">Featured Posts</h2>
+      <p class="section-subtitle">Deep-dive analyses and actionable guides published in English and Traditional Chinese.</p>
+    </div>
+    <div class="posts-grid">
+      <div class="post-card fade-up">
+        <img src="Post 1/Post1_EN_slide-1.jpg" alt="Iran Conflict & The Oil Market">
+        <div class="post-card-body">
+          <span class="post-tag">Geopolitics</span>
+          <h3>Iran Conflict & The Oil Market</h3>
+          <p>What the US-Iran tension means for oil prices, inflation expectations, and your investment portfolio.</p>
+        </div>
+      </div>
+      <div class="post-card fade-up">
+        <img src="Post 2/Post2_EN_slide-1.jpg" alt="Private Credit">
+        <div class="post-card-body">
+          <span class="post-tag">Risk</span>
+          <h3>Private Credit: The $1.7T Time Bomb?</h3>
+          <p>Shadow lending, hidden risks, and why this market could ripple into your stock portfolio.</p>
+        </div>
+      </div>
+      <div class="post-card fade-up">
+        <img src="Post 4/Post4_EN_slide-1.jpg" alt="ETF Investing 101">
+        <div class="post-card-body">
+          <span class="post-tag">Basics</span>
+          <h3>ETF Investing 101</h3>
+          <p>Your easiest first step to building wealth. How $100/month can become $150K in 20 years.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner fade-up">
+      <span class="section-label">Join the Community</span>
+      <h2>Ready to Take Your First Step?</h2>
+      <p>Follow us on Instagram for weekly insights on markets, investing, and building your financial future in Asia Pacific.</p>
+      <div class="cta-buttons">
+        <a href="https://www.instagram.com/firststep.apac" target="_blank" class="btn-primary">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          @Firststep.apac
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="First Step Logo.png" alt="First Step">
+        <span>First Step</span>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#topics">Topics</a>
+        <a href="#posts">Insights</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/firststep.apac" target="_blank" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 First Step. All rights reserved. Financial education for the next generation.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('nav').classList.remove('open'));
+    });
+  </script>
+
+</body>
+</html>
