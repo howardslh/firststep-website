@@ -10,16 +10,20 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --navy: #1a2744;
-      --navy-light: #243352;
-      --navy-dark: #111c32;
+      --navy: #0d1b2a;
+      --navy-light: #1b2a3f;
+      --navy-dark: #070f1a;
       --gold: #c9a84c;
       --gold-light: #e0c36a;
       --white: #ffffff;
-      --gray-100: #f4f6f9;
-      --gray-200: #e2e6ed;
-      --gray-400: #9ca3af;
+      --gray-50: #f0f2f5;
+      --gray-100: #e4e7ec;
+      --gray-200: #d0d5dd;
+      --gray-400: #8a94a6;
+      --gray-600: #4a5568;
       --green: #2ecc71;
+      --teal: #0fa3b1;
+      --teal-light: #e8f8f9;
     }
 
     html { scroll-behavior: smooth; }
@@ -27,14 +31,14 @@
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--navy);
-      background: var(--white);
+      background: var(--gray-50);
       overflow-x: hidden;
     }
 
     /* --- NAV --- */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(26, 39, 68, 0.95);
+      background: rgba(26, 39, 68, 0.97);
       backdrop-filter: blur(12px);
       padding: 0 2rem;
       transition: box-shadow 0.3s;
@@ -43,260 +47,321 @@
     .nav-inner {
       max-width: 1200px; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
-      height: 70px;
+      height: 64px;
     }
-    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .nav-logo img { height: 42px; width: 42px; border-radius: 50%; }
-    .nav-logo span { color: var(--white); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; }
+    .nav-logo span { color: var(--white); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
     .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
     .nav-links a {
       color: var(--gray-200); text-decoration: none; font-size: 0.9rem;
-      font-weight: 500; transition: color 0.2s; position: relative;
+      font-weight: 500; transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--gold); }
     .nav-cta {
-      background: var(--gold); color: var(--navy) !important; padding: 10px 24px;
+      background: var(--gold); color: var(--navy) !important; padding: 9px 22px;
       border-radius: 8px; font-weight: 600 !important; transition: all 0.2s !important;
     }
     .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
     .mobile-toggle { display: none; background: none; border: none; cursor: pointer; }
     .mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: 0.3s; }
 
-    /* --- HERO --- */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);
+    /* --- HERO BANNER --- */
+    .hero-banner {
+      margin-top: 64px;
+      position: relative;
+      width: 100%;
+      height: 340px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy-light));
+    }
+    .hero-banner img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-      padding: 120px 2rem 80px;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(17,28,50,0.3) 0%, rgba(17,28,50,0.7) 100%);
     }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
-                  radial-gradient(ellipse at 70% 30%, rgba(46,204,113,0.05) 0%, transparent 50%);
+    .hero-overlay-content { max-width: 700px; padding: 0 2rem; }
+    .hero-overlay h1 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800;
+      color: var(--white); line-height: 1.15; letter-spacing: -1px; margin-bottom: 0.75rem;
     }
-    .hero-grid {
-      position: absolute; inset: 0; opacity: 0.03;
-      background-image: linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
-      background-size: 60px 60px;
+    .hero-overlay h1 .accent { color: var(--gold); }
+    .hero-overlay p {
+      font-size: 1.05rem; color: rgba(255,255,255,0.8);
+      line-height: 1.6; max-width: 550px; margin: 0 auto;
     }
-    .hero-content { position: relative; max-width: 1200px; width: 100%; display: flex; align-items: center; gap: 4rem; }
-    .hero-text { flex: 1.2; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
-      padding: 6px 16px; border-radius: 50px; margin-bottom: 1.5rem;
-      color: var(--gold); font-size: 0.85rem; font-weight: 600;
-    }
-    .hero-badge .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: var(--white);
-      line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1.5px;
-    }
-    .hero h1 .accent { color: var(--gold); }
-    .hero p {
-      font-size: 1.15rem; color: var(--gray-400); line-height: 1.7;
-      max-width: 520px; margin-bottom: 2.5rem;
-    }
-    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--gold); color: var(--navy); padding: 16px 32px;
-      border-radius: 12px; font-weight: 700; font-size: 1rem; text-decoration: none;
-      transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
-      border: none; cursor: pointer;
-    }
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
-    .btn-secondary {
-      background: rgba(255,255,255,0.08); color: var(--white); padding: 16px 32px;
-      border-radius: 12px; font-weight: 600; font-size: 1rem; text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.15); transition: all 0.3s;
-    }
-    .btn-secondary:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
 
-    .hero-visual { flex: 1; display: flex; justify-content: center; }
-    .hero-card-stack { position: relative; width: 340px; height: 420px; }
-    .hero-card {
-      position: absolute; width: 280px; border-radius: 16px; overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4); transition: transform 0.5s;
-    }
-    .hero-card img { width: 100%; display: block; }
-    .hero-card:nth-child(1) { top: 0; left: 0; z-index: 3; transform: rotate(-3deg); }
-    .hero-card:nth-child(2) { top: 30px; left: 40px; z-index: 2; transform: rotate(2deg); }
-    .hero-card:nth-child(3) { top: 60px; left: 80px; z-index: 1; transform: rotate(6deg); }
-    .hero-card-stack:hover .hero-card:nth-child(1) { transform: rotate(-6deg) translateX(-20px); }
-    .hero-card-stack:hover .hero-card:nth-child(2) { transform: rotate(0deg) translateY(-10px); }
-    .hero-card-stack:hover .hero-card:nth-child(3) { transform: rotate(8deg) translateX(20px); }
-
-    /* --- STATS BAR --- */
-    .stats-bar {
+    /* --- TAB NAV (Ocean Park style) --- */
+    .tab-nav {
       background: var(--white);
-      border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200);
-      padding: 3rem 2rem;
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 2rem;
+      position: sticky; top: 64px; z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
-    .stats-inner {
-      max-width: 1000px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center;
+    .tab-nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; gap: 0; overflow-x: auto;
     }
-    .stat-item h3 { font-size: 2.5rem; font-weight: 800; color: var(--navy); letter-spacing: -1px; }
-    .stat-item h3 .gold { color: var(--gold); }
-    .stat-item p { font-size: 0.85rem; color: var(--gray-400); margin-top: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+    .tab-nav-inner::-webkit-scrollbar { display: none; }
+    .tab-link {
+      padding: 16px 28px; font-size: 0.88rem; font-weight: 600;
+      color: var(--gray-600); text-decoration: none;
+      white-space: nowrap; position: relative;
+      transition: all 0.2s; border-bottom: 3px solid transparent;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .tab-link:hover { color: var(--navy); background: var(--gray-100); }
+    .tab-link.active {
+      color: var(--white); background: var(--gold);
+      border-bottom-color: var(--gold);
+    }
 
-    /* --- SECTION COMMON --- */
-    section { padding: 100px 2rem; }
-    .section-label {
-      display: inline-block; font-size: 0.8rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 2px; color: var(--gold);
-      margin-bottom: 1rem;
+    /* --- MAIN CONTENT AREA --- */
+    .main-content {
+      max-width: 1200px; margin: 0 auto;
+      padding: 2.5rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 2.5rem;
+      align-items: start;
     }
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--navy);
-      line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -1px;
-    }
-    .section-subtitle {
-      font-size: 1.1rem; color: var(--gray-400); max-width: 600px; line-height: 1.7;
-    }
-    .section-header { text-align: center; margin-bottom: 4rem; }
-    .section-header .section-subtitle { margin: 0 auto; }
 
-    /* --- ABOUT --- */
-    #about { background: var(--gray-100); }
-    .about-grid { max-width: 1100px; margin: 0 auto; display: flex; gap: 4rem; align-items: center; }
-    .about-image { flex: 1; position: relative; }
-    .about-image img {
-      width: 100%; border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(26,39,68,0.15);
+    /* --- POST CARDS GRID (left side) --- */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
     }
-    .about-image-badge {
-      position: absolute; bottom: -20px; right: -20px;
-      background: var(--navy); color: var(--white);
-      padding: 20px 28px; border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    .post-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: all 0.3s;
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column;
     }
-    .about-image-badge h4 { font-size: 1.5rem; font-weight: 800; }
-    .about-image-badge p { font-size: 0.8rem; color: var(--gray-400); }
-    .about-text { flex: 1.2; }
-    .about-text p { color: #555; line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.05rem; }
-    .about-values { display: flex; gap: 2rem; margin-top: 2rem; }
-    .about-value { display: flex; align-items: flex-start; gap: 12px; }
-    .about-value-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: rgba(201,168,76,0.12); display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; flex-shrink: 0;
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
     }
-    .about-value h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
-    .about-value p { font-size: 0.85rem; color: var(--gray-400); margin-top: 2px; }
-
-    /* --- TOPICS --- */
-    #topics { background: var(--white); }
-    .topics-grid {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;
+    .post-card-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
     }
-    .topic-card {
-      background: var(--white); border: 1px solid var(--gray-200);
-      border-radius: 16px; padding: 2rem;
-      transition: all 0.3s; position: relative; overflow: hidden;
+    .post-card-body {
+      padding: 1.25rem; flex: 1;
+      display: flex; flex-direction: column;
     }
-    .topic-card:hover {
-      border-color: var(--gold); transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(26,39,68,0.1);
+    .post-card-tag {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: var(--gold); margin-bottom: 0.5rem;
     }
-    .topic-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      opacity: 0; transition: opacity 0.3s;
+    .post-card-body h3 {
+      font-size: 1rem; font-weight: 700;
+      color: var(--navy); line-height: 1.35;
+      margin-bottom: 0.6rem;
     }
-    .topic-card:hover::before { opacity: 1; }
-    .topic-icon {
-      width: 52px; height: 52px; border-radius: 14px;
-      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    .post-card-body p {
+      font-size: 0.82rem; color: var(--gray-400);
+      line-height: 1.55; flex: 1;
+    }
+    .post-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 1rem; font-size: 0.82rem; font-weight: 600;
+      color: var(--gold); text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .post-card:hover .post-card-link { gap: 10px; }
+    .post-card-plus {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--gold); color: var(--white);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; margin-bottom: 1.25rem;
+      font-size: 1.2rem; font-weight: 300;
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0; transition: opacity 0.3s;
+      box-shadow: 0 4px 12px rgba(201,168,76,0.4);
     }
-    .topic-card { cursor: pointer; text-decoration: none; display: block; }
-    .topic-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
-    .topic-card p { font-size: 0.9rem; color: var(--gray-400); line-height: 1.6; }
-    .topic-posts { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-200); }
-    .topic-posts a {
-      display: block; color: var(--navy); text-decoration: none; font-size: 0.85rem;
-      font-weight: 500; padding: 4px 0; transition: color 0.2s;
+    .post-card-img-wrap {
+      position: relative;
     }
-    .topic-posts a:hover { color: var(--gold); }
-    .topic-posts a::before { content: '\2192\00a0'; color: var(--gold); }
+    .post-card-img-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(26,39,68,0);
+      transition: background 0.3s;
+    }
+    .post-card:hover .post-card-img-wrap::after {
+      background: rgba(26,39,68,0.15);
+    }
+    .post-card:hover .post-card-plus { opacity: 1; }
 
-    /* --- CTA SECTION --- */
-    .cta-section {
-      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
-      text-align: center; padding: 100px 2rem; position: relative; overflow: hidden;
+    /* --- SIDEBAR (right side, Ocean Park style info box) --- */
+    .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .info-box {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-left: 4px solid var(--gold);
     }
-    .cta-section::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 60%);
+    .info-box h3 {
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 1rem;
+      line-height: 1.4;
     }
-    .cta-inner { position: relative; max-width: 700px; margin: 0 auto; }
-    .cta-section h2 {
-      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--white);
-      margin-bottom: 1rem; letter-spacing: -1px;
+    .info-box p {
+      font-size: 0.88rem; color: var(--gray-600);
+      line-height: 1.7; margin-bottom: 0.75rem;
     }
-    .cta-section p { color: var(--gray-400); font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.7; }
-    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .info-box .highlight {
+      font-weight: 600; color: var(--navy);
+    }
+    .info-box-divider {
+      height: 1px; background: var(--gray-200);
+      margin: 1rem 0;
+    }
+    .info-box .note {
+      font-size: 0.78rem; color: var(--gray-400);
+      font-style: italic; line-height: 1.6;
+    }
+
+    .follow-box {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      border-radius: 12px; padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(26,39,68,0.2);
+    }
+    .follow-box h3 {
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.75rem;
+    }
+    .follow-box p {
+      font-size: 0.82rem; color: var(--gray-400);
+      line-height: 1.6; margin-bottom: 1.25rem;
+    }
+    .follow-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--navy);
+      padding: 12px 24px; border-radius: 10px;
+      font-weight: 700; font-size: 0.9rem;
+      text-decoration: none; transition: all 0.3s;
+    }
+    .follow-btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(201,168,76,0.3);
+    }
+
+    .stats-box {
+      background: var(--white);
+      border-radius: 12px; padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .stats-box h4 {
+      font-size: 0.78rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: var(--gray-400); margin-bottom: 1rem;
+    }
+    .stat-row {
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 0.6rem 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-row .label { font-size: 0.85rem; color: var(--gray-600); font-weight: 500; }
+    .stat-row .value { font-size: 1rem; font-weight: 800; color: var(--navy); }
+    .stat-row .value .gold { color: var(--gold); }
 
     /* --- FOOTER --- */
     footer {
-      background: var(--navy-dark); padding: 3rem 2rem 2rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      background: var(--navy-dark); padding: 2.5rem 2rem 1.5rem;
+      border-top: 3px solid var(--gold);
     }
-    .footer-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
+    .footer-top {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .footer-brand { display: flex; align-items: center; gap: 12px; }
-    .footer-brand img { height: 36px; width: 36px; border-radius: 50%; }
-    .footer-brand span { color: var(--white); font-weight: 700; font-size: 1.1rem; }
-    .footer-links { display: flex; gap: 2rem; }
-    .footer-links a { color: var(--gray-400); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-social { display: flex; gap: 1rem; }
+    .footer-brand img { height: 40px; width: 40px; border-radius: 50%; }
+    .footer-brand-text h4 { color: var(--white); font-weight: 700; font-size: 1.1rem; }
+    .footer-brand-text p { color: var(--gray-400); font-size: 0.8rem; margin-top: 2px; }
+    .footer-nav { display: flex; gap: 3rem; }
+    .footer-nav-col h5 {
+      color: var(--gray-400); font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.75rem;
+    }
+    .footer-nav-col a {
+      display: block; color: var(--gray-200); text-decoration: none;
+      font-size: 0.88rem; padding: 4px 0; transition: color 0.2s;
+    }
+    .footer-nav-col a:hover { color: var(--gold); }
+    .footer-social { display: flex; gap: 0.75rem; }
     .footer-social a {
-      width: 40px; height: 40px; border-radius: 10px;
+      width: 38px; height: 38px; border-radius: 10px;
       background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center;
-      color: var(--gray-400); text-decoration: none; font-size: 1.1rem; transition: all 0.2s;
+      color: var(--gray-400); text-decoration: none; transition: all 0.2s;
     }
     .footer-social a:hover { background: var(--gold); color: var(--navy); }
-    .footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; }
-    .footer-bottom p { color: var(--gray-400); font-size: 0.8rem; }
+    .footer-bottom {
+      max-width: 1200px; margin: 1.5rem auto 0;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { color: var(--gray-400); font-size: 0.78rem; }
+    .footer-bottom .tagline { color: var(--gold); font-weight: 600; font-size: 0.78rem; }
 
     /* --- ANIMATIONS --- */
-    .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .fade-up { opacity: 0; transform: translateY(24px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
     /* --- RESPONSIVE --- */
-    @media (max-width: 900px) {
-      .hero-content { flex-direction: column; text-align: center; }
-      .hero p { margin-left: auto; margin-right: auto; }
-      .hero-buttons { justify-content: center; }
-      .hero-visual { display: none; }
-      .about-grid { flex-direction: column; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .about-values { flex-direction: column; }
+    @media (max-width: 960px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+      .sidebar { order: -1; }
+      .posts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
     }
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .mobile-toggle { display: block; }
       nav.open .nav-links {
         display: flex; flex-direction: column; position: absolute;
-        top: 70px; left: 0; right: 0; background: var(--navy);
+        top: 64px; left: 0; right: 0; background: var(--navy);
         padding: 1.5rem 2rem; gap: 1rem; border-top: 1px solid rgba(255,255,255,0.1);
       }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-      .stat-item h3 { font-size: 2rem; }
-      section { padding: 60px 1.5rem; }
+      .hero-banner { height: 220px; }
+      .hero-overlay h1 { font-size: 1.6rem; }
+      .tab-link { padding: 14px 18px; font-size: 0.8rem; }
+      .main-content { padding: 1.5rem 1rem 3rem; }
+      .posts-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .footer-nav { gap: 2rem; }
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 420px) {
+      .posts-grid { grid-template-columns: 1fr; }
     }
 
-    /* SVG icon helper */
-    .icon-svg { width: 24px; height: 24px; }
+    .icon-svg { width: 20px; height: 20px; }
   </style>
 </head>
 <body>
@@ -309,8 +374,8 @@
         <span>First Step</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#topics">Topics</a></li>
+        <li><a href="#posts">Insights</a></li>
+        <li><a href="#about-section">About</a></li>
         <li><a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank" class="nav-cta">Follow Us</a></li>
       </ul>
       <button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">
@@ -319,170 +384,177 @@
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="hero-badge">
-          <span class="dot"></span>
-          Financial Education for APAC
-        </div>
+  <!-- HERO BANNER -->
+  <div class="hero-banner">
+    <img src="Picture database/hunters-race-MYbhN8KaaEc-unsplash.jpg" alt="First Step Financial Education">
+    <div class="hero-overlay">
+      <div class="hero-overlay-content">
         <h1>Your <span class="accent">First Step</span> to Financial Freedom</h1>
-        <p>We break down complex financial concepts into clear, actionable insights for the next generation of investors across Asia Pacific.</p>
-        <div class="hero-buttons">
-          <a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank" class="btn-primary">
-            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-            Follow @Firststep.apac
-          </a>
-          <a href="#topics" class="btn-secondary">Explore Topics</a>
-        </div>
+        <p>Breaking down complex financial concepts into clear, actionable insights for the next generation of investors across Asia Pacific.</p>
       </div>
-      <div class="hero-visual">
-        <div class="hero-card-stack">
-          <div class="hero-card"><img src="Post 1/Post1_EN_slide-1.jpg" alt="Iran Conflict & Oil Market"></div>
-          <div class="hero-card"><img src="Post 4/Post4_EN_slide-1.jpg" alt="ETF Investing 101"></div>
-          <div class="hero-card"><img src="Post 7/Post7_EN_slide-1.jpg" alt="Breaking Into IB"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <div class="stats-bar">
-    <div class="stats-inner">
-      <div class="stat-item fade-up"><h3>8<span class="gold">+</span></h3><p>Years in Finance</p></div>
-      <div class="stat-item fade-up"><h3>50<span class="gold">+</span></h3><p>Students Mentored</p></div>
-      <div class="stat-item fade-up"><h3>2</h3><p>Languages</p></div>
-      <div class="stat-item fade-up"><h3>APAC</h3><p>Focus Region</p></div>
     </div>
   </div>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-grid">
-      <div class="about-image fade-up">
-        <img src="Picture database/hunters-race-MYbhN8KaaEc-unsplash.jpg" alt="Professional team">
-        <div class="about-image-badge">
-          <h4>EST. 2025</h4>
-          <p>Hong Kong</p>
-        </div>
-      </div>
-      <div class="about-text fade-up">
-        <span class="section-label">About Us</span>
-        <h2 class="section-title">Bridging the Gap Between Wall Street and Main Street</h2>
-        <p>First Step is founded by a finance professional with 8 years of experience across buy-side, sell-side, and equity research in the Asia Pacific region. Having worked at the heart of APAC's financial markets, we understand what it takes to succeed in this industry.</p>
-        <p>Over the past 3 years, we have helped over 50 students prepare for and land roles in sell-side, buy-side, and management trainee interviews. Our mission is to make professional-grade financial knowledge accessible to everyone -- whether you're looking to break into finance or simply make smarter investment decisions.</p>
-        <div class="about-values">
-          <div class="about-value">
-            <div class="about-value-icon">
-              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
-            <div>
-              <h4>50+ Students Mentored</h4>
-              <p>Sell-side, buy-side & MT interviews</p>
-            </div>
-          </div>
-          <div class="about-value">
-            <div class="about-value-icon">
-              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <div>
-              <h4>8 Years in Finance</h4>
-              <p>Buy-side, sell-side & equity research across APAC</p>
-            </div>
-          </div>
-        </div>
-        <a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank" class="btn-primary" style="margin-top: 2rem; display: inline-flex;">
-          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-          Follow @Firststep.apac
-        </a>
-      </div>
+  <!-- TAB NAV -->
+  <div class="tab-nav" id="posts">
+    <div class="tab-nav-inner">
+      <a href="#" class="tab-link active" data-filter="all">All Posts</a>
+      <a href="#" class="tab-link" data-filter="markets">Markets & Macro</a>
+      <a href="#" class="tab-link" data-filter="investing">Investing</a>
+      <a href="#" class="tab-link" data-filter="risk">Risk & Strategy</a>
+      <a href="#" class="tab-link" data-filter="career">Career</a>
     </div>
-  </section>
+  </div>
 
-  <!-- TOPICS -->
-  <section id="topics">
-    <div class="section-header">
-      <span class="section-label">What We Cover</span>
-      <h2 class="section-title">Financial Education That Matters</h2>
-      <p class="section-subtitle">From market fundamentals to career guidance, we equip the next generation of investors with the knowledge that moves the needle.</p>
-    </div>
-    <div class="topics-grid">
-      <div class="topic-card fade-up">
-        <div class="topic-icon">
-          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <h3>Markets & Macro</h3>
-        <p>Geopolitics, interest rates, and how macro forces move your portfolio.</p>
-        <div class="topic-posts">
-          <a href="post1.html">Iran Conflict & The Oil Market</a>
-          <a href="post6.html">Interest Rates: The One Number That Moves Every Market</a>
-        </div>
-      </div>
-      <div class="topic-card fade-up">
-        <div class="topic-icon">
-          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
-        </div>
-        <h3>Investing Fundamentals</h3>
-        <p>ETFs, compound interest, financial statements, and portfolio construction.</p>
-        <div class="topic-posts">
-          <a href="post4.html">ETF Investing 101</a>
-          <a href="post5.html">Financial Statements 101</a>
-          <a href="post10.html">Compound Interest: The 8th Wonder</a>
-        </div>
-      </div>
-      <div class="topic-card fade-up">
-        <div class="topic-icon">
-          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>Risk & Strategy</h3>
-        <p>Diversification, bull vs bear tactics, and protecting your portfolio.</p>
-        <div class="topic-posts">
-          <a href="post2.html">Private Credit: The $1.7T Time Bomb?</a>
-          <a href="post8.html">Diversification: The Only Free Lunch</a>
-          <a href="post9.html">Bull vs Bear: Profit in Any Market</a>
-        </div>
-      </div>
-      <div class="topic-card fade-up">
-        <div class="topic-icon">
-          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <h3>Career in Finance</h3>
-        <p>Breaking into investment banking, surviving AI, and getting hired.</p>
-        <div class="topic-posts">
-          <a href="post7.html">Breaking Into Investment Banking</a>
-          <a href="post3.html">Finding a Job in the AI Era</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- MAIN CONTENT: Cards + Sidebar -->
+  <div class="main-content">
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="cta-inner fade-up">
-      <span class="section-label">Join the Community</span>
-      <h2>Ready to Take Your First Step?</h2>
-      <p>Follow us on Instagram for weekly insights on markets, investing, and building your financial future in Asia Pacific.</p>
-      <div class="cta-buttons">
-        <a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank" class="btn-primary">
+    <!-- POST CARDS -->
+    <div class="posts-grid" id="posts-grid">
+
+      <!-- Post 1 -->
+      <a href="post1.html" class="post-card fade-up" data-category="markets">
+        <div class="post-card-img-wrap">
+          <img class="post-card-img" src="Post 1/Post1_EN_slide-1.jpg" alt="Iran Conflict & Oil Market">
+          <div class="post-card-plus">+</div>
+        </div>
+        <div class="post-card-body">
+          <span class="post-card-tag">Markets & Macro</span>
+          <h3>Iran Conflict & The Oil Market</h3>
+          <p>The Strait of Hormuz carries 20% of global oil. How US-Iran tensions could spike prices 30-40% and trigger inflation.</p>
+          <span class="post-card-link">Read more <span>&rarr;</span></span>
+        </div>
+      </a>
+
+      <!-- Post 2 -->
+      <a href="post2.html" class="post-card fade-up" data-category="risk">
+        <div class="post-card-img-wrap">
+          <img class="post-card-img" src="Post 2/Post2_EN_slide-1.jpg" alt="Private Credit Crisis">
+          <div class="post-card-plus">+</div>
+        </div>
+        <div class="post-card-body">
+          <span class="post-card-tag">Risk & Strategy</span>
+          <h3>Private Credit: The $1.7T Time Bomb?</h3>
+          <p>$1.7T in shadow lending with 3 hidden risks. How defaults could cascade through CLOs to bank balance sheets and your portfolio.</p>
+          <span class="post-card-link">Read more <span>&rarr;</span></span>
+        </div>
+      </a>
+
+      <!-- Post 3 -->
+      <a href="post3.html" class="post-card fade-up" data-category="career">
+        <div class="post-card-img-wrap">
+          <img class="post-card-img" src="Post 3/Post3_EN_slide-1.jpg" alt="Finding a Job in the AI Era">
+          <div class="post-card-plus">+</div>
+        </div>
+        <div class="post-card-body">
+          <span class="post-card-tag">Career</span>
+          <h3>Finding a Job in the AI Era</h3>
+          <p>30% of entry-level finance tasks will be automated by 2027. 5 skills AI can't replace and the roles that will survive.</p>
+          <span class="post-card-link">Read more <span>&rarr;</span></span>
+        </div>
+      </a>
+
+      <!-- Post 4 -->
+      <a href="post4.html" class="post-card fade-up" data-category="investing">
+        <div class="post-card-img-wrap">
+          <img class="post-card-img" src="Post 4/Post4_EN_slide-1.jpg" alt="ETF Investing 101">
+          <div class="post-card-plus">+</div>
+        </div>
+        <div class="post-card-body">
+          <span class="post-card-tag">Investing</span>
+          <h3>ETF Investing 101</h3>
+          <p>Own 500+ companies in one click with 0.03% fees. How $100/month at 8% return becomes $150K in 20 years.</p>
+          <span class="post-card-link">Read more <span>&rarr;</span></span>
+        </div>
+      </a>
+
+      <!-- Post 5 -->
+      <a href="post5.html" class="post-card fade-up" data-category="investing">
+        <div class="post-card-img-wrap">
+          <img class="post-card-img" src="Post 5/Post5_EN_slide-1.jpg" alt="Financial Statements 101">
+          <div class="post-card-plus">+</div>
+        </div>
+        <div class="post-card-body">
+          <span class="post-card-tag">Investing</span>
+          <h3>Financial Statements 101: EBITDA</h3>
+          <p>Three statements every investor must know. A 5-minute framework that puts you ahead of 90% of investors.</p>
+          <span class="post-card-link">Read more <span>&rarr;</span></span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <!-- Info Box -->
+      <div class="info-box fade-up" id="about-section">
+        <h3>With First Step, young professionals can access institutional-grade insights, career guidance, and financial education - all for free.</h3>
+        <div class="info-box-divider"></div>
+        <p>Founded by a finance professional with <span class="highlight">8+ years</span> of buy-side, sell-side and equity research experience across APAC.</p>
+        <p>Over the past 3 years, we have helped <span class="highlight">50+ students</span> prepare for and land roles in investment banking, asset management, and management trainee programmes.</p>
+        <div class="info-box-divider"></div>
+        <p class="note">Content is available in both English and Traditional Chinese for our APAC audience.</p>
+      </div>
+
+      <!-- Stats Box -->
+      <div class="stats-box fade-up">
+        <h4>By the Numbers</h4>
+        <div class="stat-row">
+          <span class="label">Years in Finance</span>
+          <span class="value">8<span class="gold">+</span></span>
+        </div>
+        <div class="stat-row">
+          <span class="label">Students Mentored</span>
+          <span class="value">50<span class="gold">+</span></span>
+        </div>
+        <div class="stat-row">
+          <span class="label">Languages</span>
+          <span class="value">2</span>
+        </div>
+        <div class="stat-row">
+          <span class="label">Focus Region</span>
+          <span class="value">APAC</span>
+        </div>
+      </div>
+
+      <!-- Follow Box -->
+      <div class="follow-box fade-up">
+        <h3>Join the Community</h3>
+        <p>Follow us on Instagram for weekly insights on markets, investing, and building your financial future.</p>
+        <a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank" class="follow-btn">
           <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
           @Firststep.apac
         </a>
       </div>
+
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-inner">
+    <div class="footer-top">
       <div class="footer-brand">
         <img src="First Step Logo.png" alt="First Step">
-        <span>First Step</span>
+        <div class="footer-brand-text">
+          <h4>First Step</h4>
+          <p>Your First Step to Financial Freedom</p>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="#about">About</a>
-        <a href="#topics">Topics</a>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h5>Insights</h5>
+          <a href="post1.html">Iran & Oil</a>
+          <a href="post2.html">Private Credit</a>
+          <a href="post3.html">AI & Jobs</a>
+          <a href="post4.html">ETF 101</a>
+          <a href="post5.html">EBITDA</a>
+        </div>
+        <div class="footer-nav-col">
+          <h5>Connect</h5>
+          <a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank">Instagram</a>
+          <a href="#about-section">About Us</a>
+        </div>
       </div>
       <div class="footer-social">
         <a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank" aria-label="Instagram">
@@ -491,7 +563,8 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 First Step. All rights reserved. Financial education for the next generation.</p>
+      <p>&copy; 2025 First Step. All rights reserved.</p>
+      <span class="tagline">Financial education for the next generation.</span>
     </div>
   </footer>
 
@@ -504,13 +577,27 @@
     // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Tab filtering
+    document.querySelectorAll('.tab-link').forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('.tab-link').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        document.querySelectorAll('.post-card').forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
 
     // Close mobile nav on link click
     document.querySelectorAll('.nav-links a').forEach(a => {
