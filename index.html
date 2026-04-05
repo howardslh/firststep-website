@@ -104,25 +104,26 @@
       transform: scale(1.05);
     }
 
-    /* Hero background slow pan */
+    /* Hero background - wide panorama horizontal pan */
     .hero-bg-image {
       position: absolute;
-      inset: -10%;
-      width: 120%;
-      height: 120%;
-      background: url('hero-bg.jpg') center center / cover no-repeat;
-      animation: heroPan 25s ease-in-out infinite alternate;
-      filter: brightness(0.3);
+      top: 0;
+      left: 0;
+      width: 300%;
+      height: 100%;
+      background: url('hero-bg.jpg') left center / cover no-repeat;
+      background-size: 100% auto;
+      animation: heroPan 15s linear infinite alternate;
+      filter: brightness(0.35);
     }
     @keyframes heroPan {
-      0% { transform: scale(1.08) translate(0%, 0%); }
-      50% { transform: scale(1.12) translate(-2%, -1.5%); }
-      100% { transform: scale(1.08) translate(1%, 1%); }
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-66.67%); }
     }
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(26,26,26,0.7) 70%, #1a1a1a 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(26,26,26,0.6) 70%, #1a1a1a 100%);
     }
 
     /* Accent dot pulse */
