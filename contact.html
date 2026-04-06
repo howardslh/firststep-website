@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | First Step</title>
+  <link rel="icon" type="image/png" href="First Step Logo.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', Helvetica, Arial, sans-serif;
+      background: #1a1a1a;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    input, textarea, select {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #c8ff00 !important;
+      box-shadow: 0 0 0 2px rgba(200, 255, 0, 0.15);
+    }
+    textarea { resize: vertical; min-height: 140px; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-2xl border-b border-[#3b3b3b]">
+    <div class="max-w-[1200px] mx-auto flex items-center justify-between h-[60px] px-6">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <img src="First Step Logo.png" alt="First Step" class="h-8 w-8 rounded-full">
+        <span class="text-white font-bold text-[15px] tracking-tight">First Step</span>
+      </a>
+      <div class="flex items-center gap-6">
+        <a href="index.html" class="text-[14px] text-white/60 hover:text-white font-medium flex items-center gap-1.5">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          Back
+        </a>
+        <a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank"
+           class="text-[14px] font-semibold text-white bg-white/8 hover:bg-white/15 border border-[#3b3b3b] rounded-full px-5 py-2 transition-all inline-flex items-center gap-2">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          Follow
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-[120px] pb-24 px-6">
+    <div class="max-w-[560px] mx-auto">
+
+      <!-- Header -->
+      <div class="mb-10">
+        <span class="text-[12px] font-bold uppercase tracking-[2px] text-white/40 mb-4 block">Get in Touch</span>
+        <h1 class="text-[clamp(2rem,5vw,3rem)] font-extrabold leading-[1.05] tracking-tight mb-4">
+          Contact
+          <span style="font-style:italic;font-weight:300;background:linear-gradient(to right,#c8ff00,#ffffff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Us.</span>
+        </h1>
+        <p class="text-[15px] text-white/40 leading-[1.7]">
+          Have a question about our content, coaching, or career guidance? Drop us a message and we'll get back to you as soon as we can.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form action="https://formsubmit.co/globe.howardsuen@gmail.com" method="POST" class="flex flex-col gap-5">
+
+        <!-- FormSubmit config - hidden fields -->
+        <input type="hidden" name="_subject" value="New message from First Step website">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="https://howardslh.github.io/firststep-website/thankyou.html">
+        <input type="text" name="_honey" style="display:none">
+        <input type="hidden" name="_template" value="table">
+
+        <!-- Name -->
+        <div>
+          <label class="block text-[13px] font-semibold text-white/60 mb-2 tracking-wide">Your Name <span class="text-[#c8ff00]">*</span></label>
+          <input type="text" name="name" required placeholder="e.g. John Chan"
+                 class="w-full bg-[#242424] border border-[#3b3b3b] rounded-xl px-4 py-3 text-[15px] text-white placeholder-white/25 transition-all">
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block text-[13px] font-semibold text-white/60 mb-2 tracking-wide">Email Address <span class="text-[#c8ff00]">*</span></label>
+          <input type="email" name="email" required placeholder="e.g. john@example.com"
+                 class="w-full bg-[#242424] border border-[#3b3b3b] rounded-xl px-4 py-3 text-[15px] text-white placeholder-white/25 transition-all">
+        </div>
+
+        <!-- Phone -->
+        <div>
+          <label class="block text-[13px] font-semibold text-white/60 mb-2 tracking-wide">Phone Number</label>
+          <input type="tel" name="phone" placeholder="e.g. +852 9123 4567"
+                 class="w-full bg-[#242424] border border-[#3b3b3b] rounded-xl px-4 py-3 text-[15px] text-white placeholder-white/25 transition-all">
+        </div>
+
+        <!-- Subject -->
+        <div>
+          <label class="block text-[13px] font-semibold text-white/60 mb-2 tracking-wide">What is this about? <span class="text-[#c8ff00]">*</span></label>
+          <select name="subject" required
+                  class="w-full bg-[#242424] border border-[#3b3b3b] rounded-xl px-4 py-3 text-[15px] text-white transition-all cursor-pointer">
+            <option value="" disabled selected class="text-white/25">Select a topic</option>
+            <option value="Career Coaching">Career Coaching</option>
+            <option value="Financial Education">Financial Education</option>
+            <option value="Interview Preparation">Interview Preparation</option>
+            <option value="Collaboration">Collaboration / Partnership</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label class="block text-[13px] font-semibold text-white/60 mb-2 tracking-wide">Your Message <span class="text-[#c8ff00]">*</span></label>
+          <textarea name="message" required placeholder="Tell us how we can help you..."
+                    class="w-full bg-[#242424] border border-[#3b3b3b] rounded-xl px-4 py-3 text-[15px] text-white placeholder-white/25 transition-all leading-relaxed"></textarea>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit"
+                class="w-full bg-[#c8ff00] text-black font-bold text-[15px] py-4 rounded-xl hover:brightness-110 transition-all mt-2 flex items-center justify-center gap-2">
+          Send Message
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <p class="text-[12px] text-white/20 text-center mt-1">We typically respond within 24 hours.</p>
+      </form>
+
+      <!-- Alternative contact -->
+      <div class="mt-12 p-6 bg-white/[0.03] border border-[#3b3b3b] rounded-2xl text-center">
+        <p class="text-[14px] text-white/50 mb-3">Or reach us directly on Instagram</p>
+        <a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank"
+           class="inline-flex items-center gap-2 text-[14px] text-[#c8ff00] font-semibold hover:underline">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          @Firststep.apac
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="border-t border-[#3b3b3b] py-6 px-6 text-center">
+    <p class="text-[12px] text-white/20">&copy; 2025 First Step. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
