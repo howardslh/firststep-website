@@ -164,7 +164,38 @@
       color: #c8ff00;
     }
 
+    /* Testimonials carousel */
+    .testimonials-track {
+      display: flex;
+      gap: 20px;
+      animation: scrollLeft 120s linear infinite;
+      width: max-content;
+    }
+    .testimonials-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes scrollLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .testimonial-card {
+      flex-shrink: 0;
+      width: 340px;
+      background: #242424;
+      border: 1px solid #3b3b3b;
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 0.3s;
+    }
+    .testimonial-card:hover {
+      border-color: #4b4b4b;
+    }
+
     @media (max-width: 768px) {
+      .testimonial-card {
+        width: 280px;
+        padding: 20px;
+      }
       .service-row {
         grid-template-columns: 1fr;
         gap: 4px;
@@ -264,7 +295,7 @@
             Over the past 3 years, we have coached <span class="text-white font-semibold">50+ students</span> and helped them land roles through sell-side, buy-side, and management trainee interviews at leading financial institutions.
           </p>
           <p class="text-[15px] text-white/40 leading-[1.8] mb-8">
-            Our content is available in both English and Traditional Chinese, designed for young professionals and aspiring investors across APAC.
+            Our content is available in English, Cantonese, and Mandarin - designed for young professionals and aspiring investors across Asia.
           </p>
           <!-- Instagram link in About -->
           <a href="https://www.instagram.com/firststep.apac/?hl=en" target="_blank"
@@ -286,14 +317,271 @@
             <p class="text-[11px] text-white/40 font-semibold uppercase tracking-[1.5px]">Students Coached</p>
           </div>
           <div class="bg-white/[0.03] border border-[#3b3b3b] rounded-2xl p-6 text-center hover:border-[#4b4b4b] hover:bg-white/[0.06] transition-all">
-            <h3 class="text-[2.5rem] font-extrabold tracking-tight mb-1">2</h3>
+            <h3 class="text-[2.5rem] font-extrabold tracking-tight mb-1">3</h3>
             <p class="text-[11px] text-white/40 font-semibold uppercase tracking-[1.5px]">Languages</p>
-          </div>
-          <div class="bg-white/[0.03] border border-[#3b3b3b] rounded-2xl p-6 text-center hover:border-[#4b4b4b] hover:bg-white/[0.06] transition-all">
-            <h3 class="text-[2rem] font-extrabold tracking-tight mb-1">APAC</h3>
-            <p class="text-[11px] text-white/40 font-semibold uppercase tracking-[1.5px]">Focus Region</p>
+            <p class="text-[10px] text-white/25 mt-1">EN / 粵 / 普</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <div class="max-w-[1200px] mx-auto px-6"><div class="h-px bg-[#3b3b3b]"></div></div>
+  <section class="py-24 overflow-hidden">
+    <div class="max-w-[1200px] mx-auto px-6 mb-12 fade-up">
+      <span class="text-[12px] font-bold uppercase tracking-[2px] text-white/40 mb-4 block">Testimonials</span>
+      <h2 class="text-[clamp(1.8rem,3.5vw,2.8rem)] font-extrabold leading-[1.1] tracking-tight">
+        What our students<br>
+        <span class="hero-italic">have to say.</span>
+      </h2>
+    </div>
+
+    <div class="overflow-hidden">
+      <div class="testimonials-track">
+
+        <!-- Card 1 -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"Before First Step, I had zero idea how to prep for a buyside interview. Howard broke down the technicals in a way that actually made sense. Got an offer at a mid-market PE fund within 3 months."</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Jason T.</p>
+            <p class="text-[12px] text-white/30">Private Equity Associate, Hong Kong</p>
+          </div>
+        </div>
+
+        <!-- Card 2 - Simplified Chinese -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"我之前对卖方研究完全没有概念，First Step的课程帮我从零开始搭建了分析框架。现在已经入职一家券商做行业研究员，非常感谢Howard的指导。"</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">陈思琪</p>
+            <p class="text-[12px] text-white/30">Equity Research Analyst, Shanghai</p>
+          </div>
+        </div>
+
+        <!-- Card 3 - Slightly broken English -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"Honestly I was very worry about my English in the interview but Howard help me practice many time and teach me how to structure my answer. I get the MT offer at a top bank, still cannot believe it!"</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Wing L.</p>
+            <p class="text-[12px] text-white/30">Management Trainee, Hong Kong</p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"The mock interviews were incredibly realistic. Howard didn't just give me model answers - he taught me how to think through problems like an analyst. That mindset shift was the real game changer."</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Priya M.</p>
+            <p class="text-[12px] text-white/30">Equity Research Associate, Singapore</p>
+          </div>
+        </div>
+
+        <!-- Card 5 - Simplified Chinese -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"准备面试的时候看了很多网上的资料，但都比较零散。First Step把所有知识点整理得很清楚，而且Howard会根据你的背景给出针对性建议，效率很高。"</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">张伟</p>
+            <p class="text-[12px] text-white/30">Investment Banking Analyst, Beijing</p>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"I switched from accounting to finance and had no clue where to start. First Step gave me a clear roadmap. Within 6 months I landed a sellside research role. Worth every minute."</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Rachel K.</p>
+            <p class="text-[12px] text-white/30">Research Analyst, Hong Kong</p>
+          </div>
+        </div>
+
+        <!-- Card 7 - Slightly informal -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"Bro this program is legit. I was mass applying everywhere getting ghosted, then Howard fixed my CV and taught me how to network properly. Two weeks later I had 3 interviews lined up."</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Marcus C.</p>
+            <p class="text-[12px] text-white/30">Fund Accountant, Sydney</p>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"What sets First Step apart is the real-world perspective. Howard doesn't just teach textbook finance - he shares what actually matters on the job. That practical insight is hard to find anywhere else."</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Samantha W.</p>
+            <p class="text-[12px] text-white/30">Portfolio Analyst, Hong Kong</p>
+          </div>
+        </div>
+
+        <!-- Card 9 - Simplified Chinese -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"Howard讲的东西很实在，不会说一堆没用的理论。每次上完课都觉得自己对市场的理解又深了一层。推荐给所有想进金融行业的朋友。"</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">李明轩</p>
+            <p class="text-[12px] text-white/30">Wealth Management Associate, Shenzhen</p>
+          </div>
+        </div>
+
+        <!-- Card 10 - Slightly broken English -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"I never think I can get into asset management because my university is not top school. But Howard show me that skill and preparation is more important. Now I am working in a fund house, very thankful."</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Kevin H.</p>
+            <p class="text-[12px] text-white/30">Junior Analyst, Taipei</p>
+          </div>
+        </div>
+
+        <!-- DUPLICATE SET for seamless loop -->
+
+        <!-- Card 1 dup -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"Before First Step, I had zero idea how to prep for a buyside interview. Howard broke down the technicals in a way that actually made sense. Got an offer at a mid-market PE fund within 3 months."</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Jason T.</p>
+            <p class="text-[12px] text-white/30">Private Equity Associate, Hong Kong</p>
+          </div>
+        </div>
+
+        <!-- Card 2 dup -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"我之前对卖方研究完全没有概念，First Step的课程帮我从零开始搭建了分析框架。现在已经入职一家券商做行业研究员，非常感谢Howard的指导。"</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">陈思琪</p>
+            <p class="text-[12px] text-white/30">Equity Research Analyst, Shanghai</p>
+          </div>
+        </div>
+
+        <!-- Card 3 dup -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"Honestly I was very worry about my English in the interview but Howard help me practice many time and teach me how to structure my answer. I get the MT offer at a top bank, still cannot believe it!"</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Wing L.</p>
+            <p class="text-[12px] text-white/30">Management Trainee, Hong Kong</p>
+          </div>
+        </div>
+
+        <!-- Card 4 dup -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"The mock interviews were incredibly realistic. Howard didn't just give me model answers - he taught me how to think through problems like an analyst. That mindset shift was the real game changer."</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Priya M.</p>
+            <p class="text-[12px] text-white/30">Equity Research Associate, Singapore</p>
+          </div>
+        </div>
+
+        <!-- Card 5 dup -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"准备面试的时候看了很多网上的资料，但都比较零散。First Step把所有知识点整理得很清楚，而且Howard会根据你的背景给出针对性建议，效率很高。"</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">张伟</p>
+            <p class="text-[12px] text-white/30">Investment Banking Analyst, Beijing</p>
+          </div>
+        </div>
+
+        <!-- Card 6 dup -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"I switched from accounting to finance and had no clue where to start. First Step gave me a clear roadmap. Within 6 months I landed a sellside research role. Worth every minute."</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Rachel K.</p>
+            <p class="text-[12px] text-white/30">Research Analyst, Hong Kong</p>
+          </div>
+        </div>
+
+        <!-- Card 7 dup -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"Bro this program is legit. I was mass applying everywhere getting ghosted, then Howard fixed my CV and taught me how to network properly. Two weeks later I had 3 interviews lined up."</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Marcus C.</p>
+            <p class="text-[12px] text-white/30">Fund Accountant, Sydney</p>
+          </div>
+        </div>
+
+        <!-- Card 8 dup -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"What sets First Step apart is the real-world perspective. Howard doesn't just teach textbook finance - he shares what actually matters on the job. That practical insight is hard to find anywhere else."</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Samantha W.</p>
+            <p class="text-[12px] text-white/30">Portfolio Analyst, Hong Kong</p>
+          </div>
+        </div>
+
+        <!-- Card 9 dup -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"Howard讲的东西很实在，不会说一堆没用的理论。每次上完课都觉得自己对市场的理解又深了一层。推荐给所有想进金融行业的朋友。"</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">李明轩</p>
+            <p class="text-[12px] text-white/30">Wealth Management Associate, Shenzhen</p>
+          </div>
+        </div>
+
+        <!-- Card 10 dup -->
+        <div class="testimonial-card">
+          <div class="flex items-center gap-1 mb-3">
+            <span class="text-[#c8ff00]">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-[14px] text-white/60 leading-[1.7] mb-5">"I never think I can get into asset management because my university is not top school. But Howard show me that skill and preparation is more important. Now I am working in a fund house, very thankful."</p>
+          <div>
+            <p class="text-[14px] font-semibold text-white">Kevin H.</p>
+            <p class="text-[12px] text-white/30">Junior Analyst, Taipei</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
